@@ -1,49 +1,90 @@
 <template lang="html">
-  <div class="box">
-    <div class="conversation">
-      <div class="Head">
-        <img src="src/assets/images/bg1.jpg">
-      </div>
-      <div class="pop">
-        <em class="triangle"></em>
-        <span class="triangle"></span>
-        <span class="content">
-          如果是一个正方形，我们写边时，会用到border，但我们这里讨论的三角形本身就是border，不可能再给border添加border属性，所以我们需要用到其他办法。最容易想到的，是叠加层。思路是将两个三角形叠加在一起，外层三角形稍大一些，颜色设置成边框所需的颜色；内层三角形绝对定位在里面。整体就能形成带边框三角形的假象。这里就涉及到一个绝对定位的问题，上、下、左、右四种方向的三角形相对于父级定位是不同的。首先我们来看下，当定位都为0（left:0px; top:0px;）时，会发生什么。
-        </span>
-      </div> 
-      <div class="clear">
-      </div>  
-    </div>
-    <div class="conversation">
-      <div class="Head">
-        <img src="src/assets/images/bg1.jpg">
-      </div>
-      <div class="pop">
-        <em class="triangle"></em>
-        <span class="triangle"></span>
-        <span class="content">
-          如果是一个正方形，我们写边时，会用到border，但我们这里讨论的三角形本身就是border，不可能再给border添加border属性，所以我们需要用到其他办法。最容易想到的，是叠加层。思路是将两个三角形叠加在一起，外层三角形稍大一些，颜色设置成边框所需的颜色；内层三角形绝对定位在里面。整体就能形成带边框三角形的假象。这里就涉及到一个绝对定位的问题，上、下、左、右四种方向的三角形相对于父级定位是不同的。首先我们来看下，当定位都为0（left:0px; top:0px;）时，会发生什么。
-        </span>
-      </div> 
-      <div class="clear">
-      </div> 
-    </div>
-  </div> 
+  <highcharts-component :options="options" :styles="styles" ref="simpleChart"></highcharts-component>
   
 </template>
 
 <script>
 import Vue from 'vue';
+import HighchartsComponent from 'components/highcharts/demo';
 
 export default {
-  name: 'header',
+  name: 'index',
   data() {
-    return {a:1};
+    return {
+      options:{},
+      styles:{}
+    };
+  },
+  components: {
+    HighchartsComponent
   },
   methods: {
     add(){
       return [...10];
     }
+  },
+  created(){
+    this.options = {
+    chart: {
+      type: 'area'
+    },
+    credits: {
+			enabled: false
+		},
+    title: {
+        text: '美苏核武器库存量'
+    },
+    xAxis: {
+        allowDecimals: false
+    },
+    yAxis: {
+        title: {
+            text: '核武库国家'
+        },
+        labels: {
+            formatter: function () {
+                return this.value / 1000 + 'k';
+            }
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name} 制造 <b>{point.y:,.0f}</b>枚弹头'
+    },
+    plotOptions: {
+        area: {
+            pointStart: 1940,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: '美国',
+        data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
+               1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
+               27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
+               26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+               24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
+               22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
+               10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
+    }, {
+        name: '苏联/俄罗斯',
+        data: [null, null, null, null, null, null, null, null, null, null,
+               5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
+               4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+               15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+               33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+               35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+               21000, 20000, 19000, 18000, 18000, 17000, 16000]
+    }]
+}
   }
 }
 </script>

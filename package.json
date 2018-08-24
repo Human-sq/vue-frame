@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "highcharts": "^6.1.1",
     "vue": "^2.3.0",
     "vuex": "^2.4.1",
     "whatwg-fetch": "^2.0.2"
