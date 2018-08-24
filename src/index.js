@@ -6,4 +6,5 @@ import window from 'window';
 import style from 'scss/index.scss';
 
 
+
 app.$mount('#app');

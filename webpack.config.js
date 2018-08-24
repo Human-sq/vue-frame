@@ -63,6 +63,8 @@ module.exports = {
       components: path.join(__dirname, './src/components'),
       api: path.join(__dirname, './src/api'),
       utils: path.join(__dirname, './src/utils'),
+      store: path.join(__dirname, './src/store'),
+      lib: path.join(__dirname, './src/lib'),
       scss: path.join(__dirname, './src/assets/scss'),
       'request$': path.join(__dirname, './src/api/request.js'),
       'vue$': 'vue/dist/vue.common.js'
@@ -95,6 +97,10 @@ module.exports = {
       {
         from: path.join(__dirname, './src/assets/images'),
         to: './images'
+      },
+      {
+        from: path.join(__dirname, './src/assets/fonts'),
+        to: './fonts'
       },
       {
         from: './index.html',
